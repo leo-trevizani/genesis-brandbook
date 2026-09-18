@@ -6,7 +6,10 @@
 <title>Genesis Consulting — Identidade Visual</title>
 <meta name="description" content="Manual de identidade visual da Genesis Consulting: cores, tipografia, logos e ícones prontos para copiar e baixar.">
 <link rel="icon" type="image/svg+xml" href="assets/logo/monograma-colorido.svg">
-<link rel="stylesheet" href="assets/css/style.css">
+<!-- ?v= em cada asset: o GitHub Pages serve com Cache-Control: max-age=600, entao
+     sem isso um deploy so aparece para quem ja visitou depois de 10 minutos.
+     Bump obrigatorio a cada mudanca em style.css, app.js ou manifest.json. -->
+<link rel="stylesheet" href="assets/css/style.css?v=202609181702">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -132,7 +135,7 @@
     <!-- TIPOGRAFIA -->
     <section id="tipografia">
       <h2 data-i18n="typeT">Tipografia</h2>
-      <p class="intro" data-i18n="typeI">Plus Jakarta Sans carrega todo o sistema. Space Mono existe só para código. Sukhumvit Set — a face das diretrizes impressas — é vetor de logo e impressão, nunca texto vivo na web.</p>
+      <p class="intro" data-i18n="typeI">Plus Jakarta Sans carrega todo o sistema. Space Mono tem dois papéis e só dois: código e a sobrelinha label/tag. Sukhumvit Set — a face das diretrizes impressas — é vetor de logo e impressão, nunca texto vivo na web.</p>
       <div class="specimen">Aa Bb Cc 0123</div>
       <div class="table" id="typeTable"></div>
       <div class="callout">
@@ -200,6 +203,6 @@
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/app.js"></script>
+<script src="assets/js/app.js?v=202609181702"></script>
 </body>
 </html>

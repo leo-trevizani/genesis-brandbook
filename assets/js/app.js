@@ -9,6 +9,14 @@
      #242824 é surface-raised no tema escuro. */
   var CHIP_OUTLINE = ['#242824'];
 
+  /* Versão dos assets: herdada do ?v= da própria tag <script>. Precisa ser
+     lida aqui, no topo, porque document.currentScript só vale durante a
+     execução síncrona do script. Sem isso o manifest e os ícones ficariam
+     presos no Cache-Control: max-age=600 do GitHub Pages por 10 minutos
+     depois de cada deploy. */
+  var VER = (document.currentScript && document.currentScript.src.split('?v=')[1]) || '';
+  var QV = VER ? '?v=' + VER : '';
+
   /* ===================== links das práticas ============================ */
   /* Iguais nos dois idiomas — o site institucional é único. O utm_source é o
      que permite medir no analytics quanto tráfego o brandbook encaminha. */
@@ -51,7 +59,7 @@
       pairErrT:'O erro mais comum do sistema',
       pairErr:'Rótulo branco sobre #46a239 mede 2,87:1 e reprova. A polaridade de text/on-brand INVERTE entre temas — nunca a fixe em branco.',
       typeT:'Tipografia',
-      typeI:'Plus Jakarta Sans carrega todo o sistema. Space Mono existe só para código. Sukhumvit Set — a face das diretrizes impressas — é vetor de logo e impressão, nunca texto vivo na web.',
+      typeI:'Plus Jakarta Sans carrega todo o sistema. Space Mono tem dois papéis e só dois: código e a sobrelinha label/tag. Sukhumvit Set — a face das diretrizes impressas — é vetor de logo e impressão, nunca texto vivo na web.',
       typeOddT:'Dois valores parecem erro e não são',
       typeOdd:'heading/3 tem tracking POSITIVO de +2px, e label/tag tem +20px. Ambos confirmados como intencionais — não normalize.',
       iconT:'Ícones',
@@ -112,7 +120,7 @@
       pairErrT:'The most common mistake in this system',
       pairErr:'A white label on #46a239 measures 2.87:1 and fails. The polarity of text/on-brand INVERTS between themes — never hardcode it to white.',
       typeT:'Typography',
-      typeI:'Plus Jakarta Sans carries the whole system. Space Mono exists for code only. Sukhumvit Set — the face in the printed guidelines — is logo vector and print, never live web text.',
+      typeI:'Plus Jakarta Sans carries the whole system. Space Mono has two jobs and only two: code and the label/tag eyebrow. Sukhumvit Set — the face in the printed guidelines — is logo vector and print, never live web text.',
       typeOddT:'Two values look like mistakes and are not',
       typeOdd:'heading/3 has POSITIVE +2px tracking, and label/tag has +20px. Both confirmed intentional — do not normalise them.',
       iconT:'Icons',
@@ -313,8 +321,12 @@
           caixa(fg, bg, nomes[0].trim() + ' sobre ' + nomes[1].trim()) +
           caixa(bg, fg, nomes[1].trim() + ' sobre ' + nomes[0].trim()) +
           '</span></td>' +
-          '<td class="' + (c[2] ? 'ok' : 'no') + '">' + c[1] + ':1</td></tr>';
+          '<td class="' + (c[2] ? 'ok' : 'no') + '"><span class="ratio">' +
+          '<span class="icon-slot" data-slot="' + (c[2] ? 'status-success' : 'status-error') + '"></span>' +
+          c[1] + ':1</span></td></tr>';
       }).join('') + '</tbody></table>';
+    // os ícones vêm do design system, não de um path duplicado aqui
+    fillIconSlots($('#contrastTable'));
 
     /* AI markers */
     var cols = ['var(--brand)', 'var(--accent)', 'var(--st-info)', 'var(--text-secondary)'];
@@ -359,10 +371,17 @@
     });
     grid.innerHTML = total ? html : '<p class="empty">' + esc(t('noIcons')) + '</p>';
     // inject the actual SVG markup (kept out of the template to avoid double-escaping)
-    $$('.icon-slot', grid).forEach(function (slot) {
+    fillIconSlots(grid);
+  }
+
+  /* Preenche qualquer .icon-slot com o SVG real do design system. Extraído de
+     renderIcons para a tabela de contraste usar os mesmos ícones em vez de uma
+     segunda cópia dos paths embutida no JS. */
+  function fillIconSlots(root) {
+    $$('.icon-slot', root).forEach(function (slot) {
       var n = slot.getAttribute('data-slot');
       if (ICON_CACHE[n]) { slot.innerHTML = ICON_CACHE[n]; return; }
-      fetch('assets/icons/' + n + '.svg').then(function (r) { return r.ok ? r.text() : ''; })
+      fetch('assets/icons/' + n + '.svg' + QV).then(function (r) { return r.ok ? r.text() : ''; })
         .then(function (svg) { if (svg) { ICON_CACHE[n] = svg; slot.innerHTML = svg; } })
         .catch(function () {});
     });
@@ -510,7 +529,7 @@
     }
   } catch (e) {}
 
-  fetch('assets/data/manifest.json')
+  fetch('assets/data/manifest.json' + QV)
     .then(function (r) { if (!r.ok) throw new Error('manifest ' + r.status); return r.json(); })
     .then(function (data) { M = data; applyLang(); spy(); })
     .catch(function (err) {

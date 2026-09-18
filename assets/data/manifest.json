@@ -309,7 +309,8 @@
    "lh": "160%",
    "ls": "+20px",
    "w": 400,
-   "uc": true
+   "uc": true,
+   "mono": true
   },
   {
    "token": "code/block",
