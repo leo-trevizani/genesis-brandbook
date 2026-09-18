@@ -100,9 +100,11 @@ Duas origens, e a diferença importa:
   `iconography.md`: 52 declarados, 52 exportados, nenhum a mais nem a menos.
 - **54 de ampliação** — `people`, `business`, `marketing`, `product`,
   `utility`. Tirados do Phosphor Light oficial (mesmo conjunto e mesmo peso do
-  núcleo) e reescalados de 256 para o grid de 24px. **Ainda não estão na
-  biblioteca do Figma** — enquanto não forem publicados lá, o site tem 106
-  ícones e o design system tem 52.
+  núcleo) e reescalados de 256 para o grid de 24px. Também já estão no arquivo
+  Figma, como component sets com as mesmas três variantes de tamanho e o mesmo
+  vínculo de cor; o `iconography.md` lista os 162 node keys. Falta apenas
+  **republicar a biblioteca** no Figma para que arquivos consumidores enxerguem
+  os novos.
 
 Todos usam `fill="currentColor"`, então assumem a cor do contexto onde você
 colar. Coordenadas arredondadas a 2 decimais — visualmente idêntico em
