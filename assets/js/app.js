@@ -4,6 +4,11 @@
 (function () {
   'use strict';
 
+  /* Cores que coincidem com a superfície do card e por isso precisam de um
+     contorno no chip — senão a amostra desaparece contra o próprio card.
+     #242824 é surface-raised no tema escuro. */
+  var CHIP_OUTLINE = ['#242824'];
+
   /* ===================== links das práticas ============================ */
   /* Iguais nos dois idiomas — o site institucional é único. O utm_source é o
      que permite medir no analytics quanto tráfego o brandbook encaminha. */
@@ -185,7 +190,9 @@
     if (o.cmyk) meta.push('cmyk(' + o.cmyk + ')');
     var role = o.role ? (o.role[lang] || o.role.pt || '') : '';
     return '<button class="sw" data-copy="' + o.hex + '" title="' + esc(o.hex) + '">' +
-      '<span class="sw-chip" style="background:' + o.hex + '"></span><span class="sw-body">' +
+      '<span class="sw-chip' +
+      (CHIP_OUTLINE.indexOf(String(o.hex).toLowerCase()) > -1 ? ' needs-outline' : '') +
+      '" style="background:' + o.hex + '"></span><span class="sw-body">' +
       '<span class="sw-name">' + esc(o.name) + '</span>' +
       '<span class="sw-hex">' + o.hex + '</span>' +
       (o.token ? '<span class="sw-tok">' + esc(o.token) + '</span>' : '') +
