@@ -4,6 +4,19 @@
 (function () {
   'use strict';
 
+  /* ===================== links das práticas ============================ */
+  /* Iguais nos dois idiomas — o site institucional é único. O utm_source é o
+     que permite medir no analytics quanto tráfego o brandbook encaminha. */
+  var UTM = '?utm_source=brandbook_Genesis';
+  var PRACTICE_URLS = {
+    'AI & Data':         'https://br.genesisconsulting.com/ai-data/',
+    'Digital Solutions': 'https://br.genesisconsulting.com/digital-solutions/',
+    'Cloud Computing':   'https://br.genesisconsulting.com/cloud-computing/',
+    'SAP':               'https://br.genesisconsulting.com/sap/',
+    'SAP Concur':        'https://br.genesisconsulting.com/sap-concur/',
+    'Business Agility':  'https://br.genesisconsulting.com/business-agility/'
+  };
+
   /* ============================== i18n ================================= */
   var I18N = {
     pt: {
@@ -18,7 +31,6 @@
       brandT:'A marca',
       brandI:'A Genesis Consulting entrega valor imediato: mais do que implementar soluções, oferecemos consultoria em TI voltada a resolver os desafios críticos do negócio. Esta identidade é dark-first — a superfície quase-preta domina e o verde aparece como pontuação funcional, nunca como área.',
       logoT:'Logo',
-      logoI:'Sobre superfícies escuras — a maioria neste sistema — use a versão branca. A colorida é exclusiva de fundos brancos ou claros. O módulo é escolhido pelo local de aplicação, nunca por gosto.',
       logoR1T:'Área de respiro', logoR1:'1X — a altura do símbolo. Nenhum elemento invade essa zona. 0,5X é tolerado apenas em layout móvel denso.',
       logoR2T:'Redução mínima', logoR2:'32px para o lockup horizontal · 64px para o vertical (Slogan) · 16px para o monograma isolado.',
       logoR3T:'Nunca', logoR3:'Distorcer, rotacionar, recolorir fora dos temas, aplicar sombra ou contorno, nem usar a versão colorida sobre superfície escura — mede 1,95:1 e desaparece.',
@@ -64,6 +76,7 @@
       dlJson:'tokens.json', dlJsonD:'A fonte de verdade do design system, com IDs reais do Figma.',
       dlPdf:'Manual (PDF)', dlPdfD:'30 páginas — o manual completo para enviar a stakeholders.',
       secPractices:['AI & Data','Digital Solutions','Cloud Computing','SAP','SAP Concur','Business Agility'],
+      newTab:'abre em nova aba',
       markers:['Sugerido por IA','Adaptado por IA','Revisado por IA','Autoria humana'],
       gridRows:[['Largura máx. de conteúdo','1200px'],['Gutter de página','40px'],['Colunas','12'],['Gap de grid','24px'],['Sidebar','280px'],['Modal máx.','560px'],['Breakpoints','320 · 800 · 1280'],['Alturas de controle','32 · 40 · 48px']]
     },
@@ -79,7 +92,6 @@
       brandT:'The brand',
       brandI:'Genesis Consulting delivers immediate value: more than implementing solutions, we offer IT consulting aimed at the business-critical problems. This identity is dark-first — the near-black surface dominates and the green appears as functional punctuation, never as an area.',
       logoT:'Logo',
-      logoI:'On dark surfaces — most of this system — use the white version. The colour version is exclusive to white or light backgrounds. The module is chosen by where it is applied, never by taste.',
       logoR1T:'Clear space', logoR1:'1X — the height of the symbol. Nothing may enter that zone. 0.5X is tolerated only in dense mobile layouts.',
       logoR2T:'Minimum size', logoR2:'32px for the horizontal lockup · 64px for the vertical (Slogan) · 16px for the standalone monogram.',
       logoR3T:'Never', logoR3:'Distort, rotate, recolour outside the three themes, add shadow or outline, or place the colour version on a dark surface — it measures 1.95:1 and disappears.',
@@ -125,6 +137,7 @@
       dlJson:'tokens.json', dlJsonD:'The design system’s source of truth, with real Figma IDs.',
       dlPdf:'Guidelines (PDF)', dlPdfD:'30 pages — the full manual to send to stakeholders.',
       secPractices:['AI & Data','Digital Solutions','Cloud Computing','SAP','SAP Concur','Business Agility'],
+      newTab:'opens in a new tab',
       markers:['AI-suggested','AI-adapted','AI-reviewed','Human-authored'],
       gridRows:[['Content max-width','1200px'],['Page gutter','40px'],['Columns','12'],['Grid gap','24px'],['Sidebar','280px'],['Modal max','560px'],['Breakpoints','320 · 800 · 1280'],['Control heights','32 · 40 · 48px']]
     }
@@ -194,17 +207,27 @@
   function render() {
     if (!M) return;
 
-    /* practices */
+    /* practices — cada uma leva à página do serviço, com utm para medição */
     var pr = I18N[lang].secPractices || [];
     $('#practices').innerHTML = pr.map(function (p) {
-      return '<div class="card"><h4>' + esc(p) + '</h4></div>'; }).join('');
+      var url = PRACTICE_URLS[p];
+      if (!url) return '<div class="card"><h4>' + esc(p) + '</h4></div>';
+      return '<a class="card card-link" href="' + url + UTM + '" target="_blank" ' +
+        'rel="noopener noreferrer" aria-label="' + esc(p) + ' — ' + esc(t('newTab')) + '">' +
+        '<h4>' + esc(p) + '</h4>' +
+        '<svg class="card-go" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">' +
+        '<path d="M5.5 10.5 10.5 5.5M6.5 5.5h4v4" fill="none" stroke="currentColor" ' +
+        'stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
+    }).join('');
 
     /* logos */
     $('#logoGrid').innerHTML = M.logos.map(function (l) {
       var lbl = l.label[lang] || l.label.pt;
+      var use = l.use ? (l.use[lang] || l.use.pt) : '';
       return '<div class="logo-card">' +
         '<div class="logo-stage on-dark"><img src="assets/logo/' + l.file + '-branco.svg" alt="' + esc(lbl) + '" loading="lazy"></div>' +
         '<div class="logo-info"><b>' + esc(lbl) + '</b><code>' + esc(l.module) + ' · min ' + l.min + '</code>' +
+        (use ? '<p class="logo-use">' + esc(use) + '</p>' : '') +
         '<div class="logo-dls">' +
         '<a href="assets/logo/' + l.file + '-branco.svg" download>SVG branco</a>' +
         '<a href="assets/logo/' + l.file + '-colorido.svg" download>SVG colorido</a>' +

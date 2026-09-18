@@ -140,9 +140,25 @@ section:first-of-type{border-top:0}
 .card{background:var(--surface-raised);border-radius:var(--r-card);padding:var(--s-smmd);box-shadow:var(--elev-card)}
 .card h4{color:var(--brand)}
 .card p{margin:0;font-size:14px;color:var(--text-secondary)}
+/* card que é link para a página do serviço. O realce de hover usa box-shadow
+   em anel, não border: borda mudaria a caixa e deslocaria o texto 1px.
+   --elev-card é `none` no tema escuro, então não serve de sinal de hover. */
+a.card-link{display:flex;align-items:center;justify-content:space-between;gap:var(--s-sm);
+  text-decoration:none;color:inherit;
+  transition:box-shadow .15s var(--ease),transform .15s var(--ease)}
+a.card-link h4{margin:0}
+a.card-link:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--brand),var(--elev-card)}
+a.card-link:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
+.card-go{flex:0 0 auto;color:var(--text-secondary);transition:color .15s var(--ease)}
+a.card-link:hover .card-go{color:var(--brand)}
+@media (prefers-reduced-motion:reduce){a.card-link{transition:none}a.card-link:hover{transform:none}}
+/* considerações gerais do logo: stack vertical, só borda — sem fundo nem
+   sombra, para não competir visualmente com os cards de logo acima. */
 .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s-md);margin-top:var(--s-md)}
 .rules h4{color:var(--brand);font-size:15px}
 .rules p{font-size:14px;color:var(--text-secondary);margin:0}
+.rules.stack{grid-template-columns:1fr;gap:var(--s-sm)}
+.rules.stack>div{border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:var(--s-smmd)}
 
 /* ---------- swatches ---------- */
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:var(--s-sm)}
@@ -259,6 +275,7 @@ td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
 .logo-info{padding:12px var(--s-sm) var(--s-sm)}
 .logo-info b{display:block;font-size:15px}
 .logo-info code{display:block;font-size:11px;color:var(--brand);margin:2px 0 8px}
+.logo-use{margin:0 0 12px;font-size:13px;line-height:1.55;color:var(--text-secondary)}
 .logo-dls{display:flex;gap:6px;flex-wrap:wrap}
 .logo-dls a{font-family:var(--mono);font-size:11px;padding:4px 9px;border:1px solid var(--border-default);
   border-radius:var(--r-full);text-decoration:none;color:var(--text-primary)}

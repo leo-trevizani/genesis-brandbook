@@ -511,7 +511,11 @@
     "en": "Primary"
    },
    "module": "combined / horizontal",
-   "min": "32px"
+   "min": "32px",
+   "use": {
+    "pt": "O lockup padrão e a primeira escolha em qualquer aplicação com espaço horizontal: cabeçalho expandido, splash, card de login, assinatura de documento. Sobre superfície escura use a versão branca; em fundo branco ou ultraclaro, a colorida.",
+    "en": "The default lockup and the first choice wherever there is horizontal room: expanded header, splash, login card, document signature. Use the white version on dark surfaces; the colour version on white or very light backgrounds."
+   }
   },
   {
    "file": "slogan",
@@ -520,7 +524,11 @@
     "en": "Slogan"
    },
    "module": "combined / vertical",
-   "min": "64px"
+   "min": "64px",
+   "use": {
+    "pt": "O lockup vertical, com a assinatura sob o símbolo. Reservado ao primeiro contato com a marca — hero, capa de apresentação, material institucional. Exige espaço vertical: não entra em barra de navegação nem em rodapé.",
+    "en": "The vertical lockup, with the signature under the symbol. Reserved for first contact with the brand — hero, presentation cover, institutional material. It needs vertical room: never in a nav bar or a footer."
+   }
   },
   {
    "file": "monograma",
@@ -529,7 +537,11 @@
     "en": "Monogram"
    },
    "module": "symbol / square",
-   "min": "16px"
+   "min": "16px",
+   "use": {
+    "pt": "Só o símbolo, para as aplicações mais reduzidas da marca: favicon, avatar padrão, ícone de aplicativo e trilho de navegação recolhido. Abaixo de 768px no cabeçalho, troque o lockup completo por ele.",
+    "en": "The symbol alone, for the smallest applications of the brand: favicon, default avatar, app icon and collapsed nav rail. Below 768px in the header, swap the full lockup for it."
+   }
   }
  ],
  "contrast": [
