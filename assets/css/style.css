@@ -99,11 +99,15 @@ code{font-family:var(--mono);font-size:14px;line-height:1.4}
 .side ol{list-style:none;margin:0;padding:0;counter-reset:s}
 .side li{counter-increment:s}
 .side a{
-  display:block;padding:7px 0 7px 30px;position:relative;text-decoration:none;
+  display:flex;align-items:center;gap:10px;padding:7px 0 7px 10px;text-decoration:none;
   color:var(--text-secondary);font-size:14px;border-left:2px solid transparent;transition:all .15s var(--ease);
 }
-.side a::before{content:counter(s,decimal-leading-zero);position:absolute;left:10px;
-  font-family:var(--mono);font-size:10px;color:var(--border-default)}
+/* o número é flex item, não absoluto: align-items:center centra de verdade os
+   10px do Space Mono contra a caixa de linha de 14px do Plus Jakarta Sans.
+   line-height:1 mantém a caixa do número justa, senão o centro fica falso. */
+.side a::before{content:counter(s,decimal-leading-zero);
+  font-family:var(--mono);font-size:10px;line-height:1;color:var(--border-default);
+  flex:0 0 auto;min-width:15px}
 .side a:hover{color:var(--text-primary)}
 .side a.is-active{color:var(--brand);border-left-color:var(--brand);font-weight:700}
 .side a.is-active::before{color:var(--brand)}
@@ -311,8 +315,12 @@ td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
   .hero{padding:var(--s-md) 0 var(--s-lg)}
   .icon-grid{grid-template-columns:repeat(auto-fill,minmax(88px,1fr))}
 }
-/* guard: nothing may cause horizontal page scroll */
-html,body{max-width:100%;overflow-x:hidden}
+/* NÃO usar overflow-x:hidden em html/body: isso cria um contêiner de scroll
+   e quebra position:sticky em todos os descendentes (o sidebar deixa de
+   grudar). O transbordo horizontal real já foi corrigido na topbar acima;
+   overflow-x:clip contém eventuais sobras SEM criar contêiner de scroll. */
+html,body{max-width:100%}
+body{overflow-x:clip}
 
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
