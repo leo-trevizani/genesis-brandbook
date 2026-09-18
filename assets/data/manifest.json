@@ -305,10 +305,11 @@
   },
   {
    "token": "label/tag",
-   "size": 16,
+   "size": 14,
    "lh": "160%",
    "ls": "+20px",
-   "w": 400
+   "w": 400,
+   "uc": true
   },
   {
    "token": "code/block",

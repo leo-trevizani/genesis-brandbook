@@ -269,7 +269,8 @@
         var spec = 'font-family:' + (r.mono ? 'var(--mono)' : 'var(--font)') +
           ';font-size:' + r.size + 'px;line-height:' + r.lh +
           ';letter-spacing:' + String(r.ls).replace('+', '') +
-          ';font-weight:' + r.w;
+          ';font-weight:' + r.w +
+          (r.uc ? ';text-transform:uppercase' : '');
         return '<tr><td><span class="tok-spec" style="' + spec + '">' + esc(r.token) +
           '</span>' + (r.mono ? ' <span class="tok">⌨</span>' : '') + '</td>' +
           '<td><span class="val">' + r.size + 'px</span></td><td class="mono">' + r.lh +
