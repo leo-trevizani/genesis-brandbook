@@ -9,7 +9,7 @@
 <!-- ?v= em cada asset: o GitHub Pages serve com Cache-Control: max-age=600, entao
      sem isso um deploy so aparece para quem ja visitou depois de 10 minutos.
      Bump obrigatorio a cada mudanca em style.css, app.js ou manifest.json. -->
-<link rel="stylesheet" href="assets/css/style.css?v=202609181817">
+<link rel="stylesheet" href="assets/css/style.css?v=202609181859">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -19,9 +19,16 @@
 <a class="skip" href="#main" data-i18n="skip">Ir para o conteúdo</a>
 
 <header class="topbar">
+  <div class="topbar-inner">
+  <!-- quatro imagens porque a escolha cruza dois eixos que o CSS resolve de
+       formas diferentes: tema (data-theme, sem media query) e largura (media
+       query, sem data-theme). alt="" nas quatro — quem nomeia o link é o
+       aria-label do <a>, senão o leitor de tela repetiria o nome. -->
   <a class="brand" href="#main" aria-label="Genesis Consulting">
-    <img src="assets/logo/principal-branco.svg" alt="Genesis Consulting" class="brand-logo brand-dark">
-    <img src="assets/logo/principal-colorido.svg" alt="Genesis Consulting" class="brand-logo brand-light">
+    <img src="assets/logo/principal-branco.svg" alt="" class="brand-logo brand-dark brand-full">
+    <img src="assets/logo/principal-colorido.svg" alt="" class="brand-logo brand-light brand-full">
+    <img src="assets/logo/monograma-branco.svg" alt="" class="brand-logo brand-dark brand-mono">
+    <img src="assets/logo/monograma-colorido.svg" alt="" class="brand-logo brand-light brand-mono">
   </a>
   <div class="topbar-actions">
     <div class="seg" role="group" aria-label="Idioma / Language">
@@ -35,6 +42,7 @@
     <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.34 12c0 .12-.05.24-.13.33-.09.09-.21.14-.34.14H5.13c-.13 0-.25-.05-.34-.14A.47.47 0 0 1 4.66 12c0-.12.05-.24.13-.33.09-.09.21-.14.34-.14h13.74c.13 0 .25.05.34.14.08.09.13.21.13.33Zm-14.21-4.53h13.74c.13 0 .25-.05.34-.14.08-.09.13-.21.13-.33 0-.12-.05-.24-.13-.33a.47.47 0 0 0-.34-.14H5.13c-.13 0-.25.05-.34.14a.47.47 0 0 0-.13.33c0 .12.05.24.13.33.09.09.21.14.34.14Zm13.74 9.06H5.13c-.13 0-.25.05-.34.14a.47.47 0 0 0-.13.33c0 .12.05.24.13.33.09.09.21.14.34.14h13.74c.13 0 .25-.05.34-.14.08-.09.13-.21.13-.33 0-.12-.05-.24-.13-.33a.47.47 0 0 0-.34-.14Z"/></svg>
     </button>
+  </div>
   </div>
 </header>
 
@@ -197,12 +205,12 @@
 
     <footer class="foot">
       <p data-i18n="footA">Genesis Consulting · Manual de Identidade Visual v.01/2026</p>
-      <p class="muted" data-i18n="footB">Em caso de dúvidas sobre a aplicação da identidade, procure o time de Marketing Institucional.</p>
+      <p class="muted" data-i18n="footB">Em caso de dúvidas sobre a aplicação da identidade, procure o time de Marketing Institucional ou mande um e-mail para administrativo@genesisconsulting.com.</p>
     </footer>
   </main>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/app.js?v=202609181817"></script>
+<script src="assets/js/app.js?v=202609181859"></script>
 </body>
 </html>

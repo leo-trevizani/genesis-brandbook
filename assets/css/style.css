@@ -25,6 +25,12 @@
   --font:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --mono:'Space Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
   --maxw:1200px;
+  /* Altura real da topbar, medida no navegador. Quatro valores dependiam
+     dela e estavam espalhados: scroll-padding, o top do sidebar, dois
+     max-height e o inset do menu mobile. Agora é um número só — mas ele é
+     medido, não derivado: se o padding ou o conteúdo da barra mudar, remeça.
+     O scroll spy não usa esta variável; ele lê a altura do DOM. */
+  --topbar-h:84px;
   --ease:cubic-bezier(0,0,.2,1);
 }
 
@@ -52,7 +58,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topbar-h) + var(--s-sm))}
 body{
   margin:0;background:var(--surface-page);color:var(--text-primary);
   font-family:var(--font);font-size:16px;line-height:1.6;
@@ -73,14 +79,23 @@ code{font-family:var(--mono);font-size:14px;line-height:1.4}
 .skip:focus{left:0}
 
 /* ---------- topbar ---------- */
+/* A barra ocupa a largura toda (fundo e borda vão de ponta a ponta), mas o
+   conteúdo segue o mesmo max-width e o mesmo padding lateral da .shell —
+   assim o logo alinha com o sidebar e os seletores alinham com o conteúdo. */
 .topbar{
-  position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-  gap:var(--s-sm);padding:var(--s-sm) var(--s-md);background:var(--surface-page);
+  position:sticky;top:0;z-index:50;background:var(--surface-page);
   border-bottom:1px solid var(--border-subtle);
+}
+.topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-sm);
+  max-width:var(--maxw);margin:0 auto;padding:var(--s-smmd) var(--s-md);
 }
 .brand{display:flex;align-items:center;text-decoration:none}
 .brand-logo{height:28px;width:auto;display:block}
+/* O tema tem especificidade maior que o recorte por largura, de propósito:
+   qualquer que seja o par visível, a versão do tema errado fica escondida. */
 :root[data-theme="dark"] .brand-light,:root[data-theme="light"] .brand-dark{display:none}
+.brand-mono{display:none}
 .topbar-actions{display:flex;align-items:center;gap:var(--s-xs)}
 .seg{display:inline-flex;border:1px solid var(--border-subtle);border-radius:var(--r-full);overflow:hidden}
 .seg button{
@@ -95,7 +110,8 @@ code{font-family:var(--mono);font-size:14px;line-height:1.4}
 /* ---------- shell / sidebar ---------- */
 .shell{display:grid;grid-template-columns:232px minmax(0,1fr);gap:var(--s-lg);
   max-width:var(--maxw);margin:0 auto;padding:0 var(--s-md)}
-.side{position:sticky;top:96px;align-self:start;padding-top:var(--s-lg);max-height:calc(100vh - 120px);overflow-y:auto}
+.side{position:sticky;top:calc(var(--topbar-h) + var(--s-sm));align-self:start;padding-top:var(--s-lg);
+  max-height:calc(100vh - var(--topbar-h) - var(--s-md));overflow-y:auto}
 .side ol{list-style:none;margin:0;padding:0;counter-reset:s}
 .side li{counter-increment:s}
 .side a{
@@ -343,12 +359,16 @@ td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
 /* ---------- responsive ---------- */
 @media (max-width:860px){
   .shell{grid-template-columns:1fr;gap:0;padding:0 var(--s-sm)}
-  .side{position:fixed;inset:64px 0 auto;background:var(--surface-page);z-index:40;
+  .side{position:fixed;inset:var(--topbar-h) 0 auto;background:var(--surface-page);z-index:40;
     padding:var(--s-sm) var(--s-md) var(--s-md);border-bottom:1px solid var(--border-subtle);
-    display:none;max-height:calc(100vh - 64px)}
+    display:none;max-height:calc(100vh - var(--topbar-h))}
   .side.is-open{display:block}
   .menu-btn{display:inline-flex}
-  .topbar{padding:var(--s-sm)}
+  :root{--topbar-h:69px}
+  .topbar-inner{padding:var(--s-sm)}
+  /* com o índice virando menu de hambúrguer, o lockup cede lugar ao monograma */
+  .brand-full{display:none}
+  .brand-mono{display:block}
   section{padding:var(--s-lg) 0}
   .hero{padding:var(--s-lg) 0}
 }
@@ -356,7 +376,8 @@ td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
    (measured 391px). Tighten both segs and the logo rather than wrapping the
    bar, which would push the content down on every scroll. */
 @media (max-width:560px){
-  .topbar{padding:10px 12px;gap:8px}
+  :root{--topbar-h:56px}
+  .topbar-inner{padding:10px 12px;gap:8px}
   .brand-logo{height:22px}
   .seg button{padding:5px 9px;font-size:12px}
   .topbar-actions{gap:6px}

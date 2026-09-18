@@ -78,7 +78,7 @@
       downT:'Downloads',
       downI:'Tudo empacotado. Os logos são SVG vetorial; os PNG vão junto como fallback para ferramentas que não aceitam vetor.',
       footA:'Genesis Consulting · Manual de Identidade Visual v.01/2026',
-      footB:'Em caso de dúvidas sobre a aplicação da identidade, procure o time de Marketing Institucional.',
+      footB:'Em caso de dúvidas sobre a aplicação da identidade, procure o time de Marketing Institucional ou mande um e-mail para administrativo@genesisconsulting.com.',
       copied:'Copiado', copiedSvg:'SVG copiado', copyFail:'Não foi possível copiar — selecione manualmente',
       thToken:'Token', thSize:'Tam.', thLh:'Entrelinha', thLs:'Tracking', thWeight:'Peso',
       thDark:'Escuro', thLight:'Claro', thPair:'Par de contraste', thSample:'Amostra', thRatio:'Razão', thProp:'Propriedade', thValue:'Valor',
@@ -140,7 +140,7 @@
       downT:'Downloads',
       downI:'Everything packaged. Logos are vector SVG; the PNGs ship alongside as a fallback for tools that will not take vector.',
       footA:'Genesis Consulting · Visual Identity Guidelines v.01/2026',
-      footB:'For questions about applying the identity, contact the Institutional Marketing team.',
+      footB:'For questions about applying the identity, contact the Institutional Marketing team or email administrativo@genesisconsulting.com.',
       copied:'Copied', copiedSvg:'SVG copied', copyFail:'Could not copy — please select manually',
       thToken:'Token', thSize:'Size', thLh:'Line height', thLs:'Tracking', thWeight:'Weight',
       thDark:'Dark', thLight:'Light', thPair:'Contrast pair', thSample:'Sample', thRatio:'Ratio', thProp:'Property', thValue:'Value',
@@ -477,7 +477,16 @@
     }).filter(function (x) { return x.sec; });
     if (!itens.length) return;
 
-    var LINHA = 140;     // linha de leitura, logo abaixo da topbar fixa
+    // Linha de leitura: medida a partir da topbar real, não fixada. A barra
+    // muda de altura entre os três breakpoints, e um número cravado aqui se
+    // desalinharia do scroll-padding-top no primeiro ajuste de padding.
+    var barra = document.querySelector('.topbar');
+    var LINHA = 140;
+    function medirLinha() {
+      var h = barra ? barra.getBoundingClientRect().height : 62;
+      LINHA = h + 56;   // 16px do scroll-padding + 40 de folga
+    }
+    medirLinha();
     var aceso = null;    // evita tocar no DOM quando nada mudou
     var alvo = null;     // seção clicada
     var alvoAte = 0;     // até quando o clique manda, enquanto o scroll assenta
@@ -517,7 +526,7 @@
       });
     });
     addEventListener('scroll', calcular, { passive: true });
-    addEventListener('resize', calcular);
+    addEventListener('resize', function () { medirLinha(); calcular(); });
     addEventListener('hashchange', calcular);
     calcular();
   }
