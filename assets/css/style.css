@@ -243,6 +243,14 @@ td .tok{font-family:var(--mono);font-size:12px;color:var(--text-primary)}
    do manifest). display chega a 76px: é a tabela que rola, não a página. */
 td .tok-spec{display:inline-block;color:var(--text-primary);white-space:nowrap}
 td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
+/* Amostras da tabela de contraste: a mesma dupla aplicada nos dois sentidos.
+   A borda é necessária — quando o fundo da caixa coincide com a superfície
+   do tema (Forest Black no escuro, Mist no claro) ela sumiria sem contorno. */
+.cpair{display:inline-flex;gap:6px}
+.cbox{display:inline-flex;align-items:center;justify-content:center;
+  width:46px;height:34px;border-radius:var(--r-btn);border:1px solid var(--border-subtle);
+  font-size:15px;font-weight:700;line-height:1}
+.chex{font-family:var(--mono);font-size:11px;color:var(--text-disabled)}
 .ok{color:var(--emerald-400);font-weight:700;font-family:var(--mono)}
 .no{color:var(--st-error);font-weight:700;font-family:var(--mono)}
 :root[data-theme="light"] .ok{color:var(--emerald-800)}
@@ -304,7 +312,7 @@ td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
 .markers{display:flex;gap:var(--s-xs);flex-wrap:wrap;margin-top:var(--s-md)}
 .marker{display:inline-flex;align-items:center;gap:var(--s-xs);height:36px;padding:0 14px;
   background:var(--surface-raised);border:1px solid var(--border-default);border-radius:var(--r-full);font-size:14px}
-.marker i{width:10px;height:10px;border-radius:2px;flex:0 0 auto}
+.marker i{width:10px;height:10px;border-radius:var(--r-full);flex:0 0 auto}
 
 /* ---------- downloads ---------- */
 .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:var(--s-sm);margin-top:var(--s-md)}

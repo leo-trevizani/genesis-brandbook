@@ -402,6 +402,18 @@
   "action-share",
   "action-upload",
   "action-view",
+  "business-airplane",
+  "business-briefcase",
+  "business-buildings",
+  "business-certificate",
+  "business-credit-card",
+  "business-database",
+  "business-factory",
+  "business-hard-drives",
+  "business-kanban",
+  "business-receipt",
+  "business-strategy",
+  "business-tree-structure",
   "content-ai-brain",
   "content-attachment",
   "content-chart",
@@ -416,6 +428,16 @@
   "content-link",
   "content-network",
   "content-palette",
+  "marketing-bookmark",
+  "marketing-chart-line-up",
+  "marketing-chat",
+  "marketing-envelope-open",
+  "marketing-globe",
+  "marketing-megaphone",
+  "marketing-presentation",
+  "marketing-star",
+  "marketing-target",
+  "marketing-thumbs-up",
   "navigation-arrow-left",
   "navigation-arrow-right",
   "navigation-arrow-up-right",
@@ -428,6 +450,26 @@
   "navigation-home",
   "navigation-menu",
   "navigation-search",
+  "people-address-book",
+  "people-badge",
+  "people-handshake",
+  "people-headset",
+  "people-teacher",
+  "people-user",
+  "people-user-circle",
+  "people-user-plus",
+  "people-users",
+  "people-users-three",
+  "product-blueprint",
+  "product-cube",
+  "product-flag",
+  "product-lightbulb",
+  "product-map",
+  "product-package",
+  "product-puzzle",
+  "product-rocket",
+  "product-stack",
+  "product-wrench",
   "status-ai",
   "status-blocked",
   "status-clock",
@@ -439,7 +481,19 @@
   "status-seal-check",
   "status-shield-check",
   "status-success",
-  "status-warning"
+  "status-warning",
+  "utility-bell",
+  "utility-calendar",
+  "utility-export",
+  "utility-file-text",
+  "utility-folder",
+  "utility-key",
+  "utility-lock",
+  "utility-phone",
+  "utility-printer",
+  "utility-question",
+  "utility-sign-out",
+  "utility-translate"
  ],
  "iconGroups": {
   "action": [
@@ -458,6 +512,20 @@
    "action-upload",
    "action-view"
   ],
+  "business": [
+   "business-airplane",
+   "business-briefcase",
+   "business-buildings",
+   "business-certificate",
+   "business-credit-card",
+   "business-database",
+   "business-factory",
+   "business-hard-drives",
+   "business-kanban",
+   "business-receipt",
+   "business-strategy",
+   "business-tree-structure"
+  ],
   "content": [
    "content-ai-brain",
    "content-attachment",
@@ -474,6 +542,18 @@
    "content-network",
    "content-palette"
   ],
+  "marketing": [
+   "marketing-bookmark",
+   "marketing-chart-line-up",
+   "marketing-chat",
+   "marketing-envelope-open",
+   "marketing-globe",
+   "marketing-megaphone",
+   "marketing-presentation",
+   "marketing-star",
+   "marketing-target",
+   "marketing-thumbs-up"
+  ],
   "navigation": [
    "navigation-arrow-left",
    "navigation-arrow-right",
@@ -488,6 +568,30 @@
    "navigation-menu",
    "navigation-search"
   ],
+  "people": [
+   "people-address-book",
+   "people-badge",
+   "people-handshake",
+   "people-headset",
+   "people-teacher",
+   "people-user",
+   "people-user-circle",
+   "people-user-plus",
+   "people-users",
+   "people-users-three"
+  ],
+  "product": [
+   "product-blueprint",
+   "product-cube",
+   "product-flag",
+   "product-lightbulb",
+   "product-map",
+   "product-package",
+   "product-puzzle",
+   "product-rocket",
+   "product-stack",
+   "product-wrench"
+  ],
   "status": [
    "status-ai",
    "status-blocked",
@@ -501,6 +605,20 @@
    "status-shield-check",
    "status-success",
    "status-warning"
+  ],
+  "utility": [
+   "utility-bell",
+   "utility-calendar",
+   "utility-export",
+   "utility-file-text",
+   "utility-folder",
+   "utility-key",
+   "utility-lock",
+   "utility-phone",
+   "utility-printer",
+   "utility-question",
+   "utility-sign-out",
+   "utility-translate"
   ]
  },
  "logos": [
@@ -548,42 +666,58 @@
   [
    "Mist / Forest Black",
    "17.85",
-   true
+   true,
+   "#edf3ed",
+   "#030903"
   ],
   [
    "Accent Neon / Forest Black",
    "9.45",
-   true
+   true,
+   "#8fc05d",
+   "#030903"
   ],
   [
-   "Genesis Deep / branco",
+   "Genesis Deep / Mist",
    "9.16",
-   true
+   true,
+   "#1b4a14",
+   "#edf3ed"
   ],
   [
    "Sage / Forest Black",
    "7.01",
-   true
+   true,
+   "#8f9c8f",
+   "#030903"
   ],
   [
    "Genesis Green / Forest Black",
    "6.21",
-   true
+   true,
+   "#46a239",
+   "#030903"
   ],
   [
    "Sage / Raised",
    "5.21",
-   true
+   true,
+   "#8f9c8f",
+   "#242824"
   ],
   [
-   "Genesis Green / branco",
+   "Genesis Green / Mist",
    "2.87",
-   false
+   false,
+   "#46a239",
+   "#edf3ed"
   ],
   [
-   "Accent Neon / branco",
+   "Accent Neon / Mist",
    "1.89",
-   false
+   false,
+   "#8fc05d",
+   "#edf3ed"
   ]
  ]
 }

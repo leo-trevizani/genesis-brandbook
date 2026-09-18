@@ -55,7 +55,7 @@
       typeOddT:'Dois valores parecem erro e não são',
       typeOdd:'heading/3 tem tracking POSITIVO de +2px, e label/tag tem +20px. Ambos confirmados como intencionais — não normalize.',
       iconT:'Ícones',
-      iconI:'52 ícones Phosphor peso Light, exportados direto do design system. Clique para copiar o SVG; o botão baixa o arquivo. Todos usam currentColor — assumem a cor do contexto onde você colar.',
+      iconI:'106 ícones Phosphor peso Light, no grid de 24px do design system — 52 do núcleo original e 54 acrescentados para pessoas, negócio, marketing, produto e utilidades. Clique para copiar o SVG; o botão baixa o arquivo. Todos usam currentColor — assumem a cor do contexto onde você colar.',
       iconSearch:'Buscar ícone…', iconZip:'Baixar todos (.zip)',
       spaceT:'Espaçamento e grid',
       spaceI:'Base 4px. A escala dobra até 64 e depois vira irregular — essa cauda é ritmo de seção, não espaçamento de componente. Nunca use 3xl dentro de um card.',
@@ -73,10 +73,10 @@
       footB:'Em caso de dúvidas sobre a aplicação da identidade, procure o time de Marketing Institucional.',
       copied:'Copiado', copiedSvg:'SVG copiado', copyFail:'Não foi possível copiar — selecione manualmente',
       thToken:'Token', thSize:'Tam.', thLh:'Entrelinha', thLs:'Tracking', thWeight:'Peso',
-      thDark:'Escuro', thLight:'Claro', thPair:'Par de contraste', thRatio:'Razão', thProp:'Propriedade', thValue:'Valor',
+      thDark:'Escuro', thLight:'Claro', thPair:'Par de contraste', thSample:'Amostra', thRatio:'Razão', thProp:'Propriedade', thValue:'Valor',
       noIcons:'Nenhum ícone encontrado.',
       dlLogos:'Logos', dlLogosD:'6 SVG + 6 PNG — Principal, Slogan e Monograma em colorido e branco.',
-      dlIcons:'Ícones', dlIconsD:'52 SVG com currentColor, nomeados como no design system.',
+      dlIcons:'Ícones', dlIconsD:'106 SVG com currentColor, nomeados como no design system.',
       dlTokens:'Tokens CSS', dlTokensD:'Custom properties dos dois temas, geradas do tokens.json.',
       dlJson:'tokens.json', dlJsonD:'A fonte de verdade do design system, com IDs reais do Figma.',
       dlPdf:'Manual (PDF)', dlPdfD:'30 páginas — o manual completo para enviar a stakeholders.',
@@ -116,7 +116,7 @@
       typeOddT:'Two values look like mistakes and are not',
       typeOdd:'heading/3 has POSITIVE +2px tracking, and label/tag has +20px. Both confirmed intentional — do not normalise them.',
       iconT:'Icons',
-      iconI:'52 Phosphor Light icons, exported straight from the design system. Click to copy the SVG; the button downloads the file. All use currentColor — they take the colour of wherever you paste them.',
+      iconI:'106 Phosphor Light icons on the design system’s 24px grid — 52 from the original core and 54 added for people, business, marketing, product and utilities. Click to copy the SVG; the button downloads the file. All use currentColor — they take the colour of wherever you paste them.',
       iconSearch:'Search icons…', iconZip:'Download all (.zip)',
       spaceT:'Spacing and grid',
       spaceI:'4px base. The scale doubles to 64 then goes irregular — that tail is section rhythm, not component spacing. Never reach for 3xl inside a card.',
@@ -134,10 +134,10 @@
       footB:'For questions about applying the identity, contact the Institutional Marketing team.',
       copied:'Copied', copiedSvg:'SVG copied', copyFail:'Could not copy — please select manually',
       thToken:'Token', thSize:'Size', thLh:'Line height', thLs:'Tracking', thWeight:'Weight',
-      thDark:'Dark', thLight:'Light', thPair:'Contrast pair', thRatio:'Ratio', thProp:'Property', thValue:'Value',
+      thDark:'Dark', thLight:'Light', thPair:'Contrast pair', thSample:'Sample', thRatio:'Ratio', thProp:'Property', thValue:'Value',
       noIcons:'No icons found.',
       dlLogos:'Logos', dlLogosD:'6 SVG + 6 PNG — Primary, Slogan and Monogram in colour and white.',
-      dlIcons:'Icons', dlIconsD:'52 SVG using currentColor, named as in the design system.',
+      dlIcons:'Icons', dlIconsD:'106 SVGs using currentColor, named as in the design system.',
       dlTokens:'Token CSS', dlTokensD:'Custom properties for both themes, generated from tokens.json.',
       dlJson:'tokens.json', dlJsonD:'The design system’s source of truth, with real Figma IDs.',
       dlPdf:'Guidelines (PDF)', dlPdfD:'30 pages — the full manual to send to stakeholders.',
@@ -296,10 +296,23 @@
         '</b><code>radius/' + r[0] + '</code></div>';
     }).join('');
 
-    /* contrast */
-    $('#contrastTable').innerHTML = '<table><thead><tr><th>' + t('thPair') + '</th><th>' + t('thRatio') +
-      '</th></tr></thead><tbody>' + M.contrast.map(function (c) {
-        return '<tr><td>' + esc(c[0]) + '</td><td class="' + (c[2] ? 'ok' : 'no') + '">' + c[1] + ':1</td></tr>';
+    /* contrast — a razão é simétrica, então cada par vale nos dois sentidos:
+       a coluna de amostra mostra A sobre B e B sobre A, aplicados de verdade. */
+    $('#contrastTable').innerHTML = '<table><thead><tr><th>' + t('thPair') + '</th><th>' +
+      t('thSample') + '</th><th>' + t('thRatio') + '</th></tr></thead><tbody>' +
+      M.contrast.map(function (c) {
+        var nomes = c[0].split('/'), fg = c[3], bg = c[4];
+        var caixa = function (texto, fundo, titulo) {
+          return '<span class="cbox" style="color:' + texto + ';background:' + fundo +
+            '" title="' + esc(titulo) + '">Aa</span>';
+        };
+        return '<tr><td>' + esc(nomes[0].trim()) + ' <span class="chex">' + fg + '</span><br>' +
+          esc(nomes[1].trim()) + ' <span class="chex">' + bg + '</span></td>' +
+          '<td><span class="cpair">' +
+          caixa(fg, bg, nomes[0].trim() + ' sobre ' + nomes[1].trim()) +
+          caixa(bg, fg, nomes[1].trim() + ' sobre ' + nomes[0].trim()) +
+          '</span></td>' +
+          '<td class="' + (c[2] ? 'ok' : 'no') + '">' + c[1] + ':1</td></tr>';
       }).join('') + '</tbody></table>';
 
     /* AI markers */
@@ -311,7 +324,7 @@
     /* downloads */
     var dls = [
       ['dlLogos','dlLogosD','assets/downloads/genesis-logos.zip','ZIP · 181 KB'],
-      ['dlIcons','dlIconsD','assets/downloads/genesis-icons.zip','ZIP · 41 KB'],
+      ['dlIcons','dlIconsD','assets/downloads/genesis-icons.zip','ZIP · 72 KB'],
       ['dlTokens','dlTokensD','assets/downloads/genesis-tokens.css','CSS'],
       ['dlJson','dlJsonD','assets/data/tokens.json','JSON · 50 KB'],
       ['dlPdf','dlPdfD','assets/downloads/genesis-miv.pdf','PDF · 1,2 MB']

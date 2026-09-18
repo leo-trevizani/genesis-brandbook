@@ -12,9 +12,11 @@ Copyright Colophon Foundry. Licenciada sob a SIL Open Font License 1.1.
 Carregada via Google Fonts.
 
 ## Phosphor Icons
-Os 52 ícones derivam do Phosphor Icons (peso Light), licença MIT,
-https://phosphoricons.com — exportados do design system da Genesis com os
-nomes semânticos do sistema.
+Os 106 ícones derivam do Phosphor Icons (peso Light), licença MIT,
+https://phosphoricons.com. Os 52 do núcleo saíram do design system da Genesis;
+os 54 restantes vieram do pacote oficial `@phosphor-icons/core` e foram
+reescalados para o grid de 24px. Todos carregam os nomes semânticos do
+sistema, não os do Phosphor.
 
 ## Identidade Genesis Consulting
 Os logos, o nome e a identidade visual são propriedade da Genesis Consulting.

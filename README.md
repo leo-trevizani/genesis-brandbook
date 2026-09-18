@@ -73,7 +73,7 @@ assets/js/app.js              i18n, tema, copiar, busca de ícones
 assets/data/manifest.json     dados do site — gerado do tokens.json
 assets/data/tokens.json       a fonte de verdade do design system
 assets/logo/                  6 SVG + 6 PNG
-assets/icons/                 52 SVG (currentColor)
+assets/icons/                 106 SVG (currentColor)
 assets/fonts/                 Plus Jakarta Sans (OFL) + a licença
 assets/downloads/             ZIPs, tokens CSS e o manual em PDF
 ```
@@ -90,10 +90,19 @@ Os textos editoriais e as razões de contraste estão escritos no
 
 ### Os ícones
 
-52 SVGs exportados direto do arquivo Figma publicado, com os nomes do design
-system (`navigation-caret-down`, `status-shield-check`…). Conferidos um a um
-contra o `iconography.md`: 52 declarados, 52 exportados, nenhum a mais nem a
-menos.
+106 SVGs no grid de 24px, com os nomes do design system
+(`navigation-caret-down`, `status-shield-check`…), em nove grupos.
+
+Duas origens, e a diferença importa:
+
+- **52 do núcleo** — `action`, `content`, `navigation`, `status`. Exportados
+  direto do arquivo Figma publicado e conferidos um a um contra o
+  `iconography.md`: 52 declarados, 52 exportados, nenhum a mais nem a menos.
+- **54 de ampliação** — `people`, `business`, `marketing`, `product`,
+  `utility`. Tirados do Phosphor Light oficial (mesmo conjunto e mesmo peso do
+  núcleo) e reescalados de 256 para o grid de 24px. **Ainda não estão na
+  biblioteca do Figma** — enquanto não forem publicados lá, o site tem 106
+  ícones e o design system tem 52.
 
 Todos usam `fill="currentColor"`, então assumem a cor do contexto onde você
 colar. Coordenadas arredondadas a 2 decimais — visualmente idêntico em
