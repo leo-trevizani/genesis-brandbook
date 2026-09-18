@@ -88,6 +88,7 @@
       dlTokens:'Tokens CSS', dlTokensD:'Custom properties dos dois temas, geradas do tokens.json.',
       dlJson:'tokens.json', dlJsonD:'A fonte de verdade do design system, com IDs reais do Figma.',
       dlPdf:'Manual (PDF)', dlPdfD:'30 páginas — o manual completo para enviar a stakeholders.',
+      dlDesign:'DESIGN.md', dlDesignD:'A referência de estilo em markdown — cor, tipografia, componentes e regras de interface. Feita para colar num agente de IA ou num repositório.',
       secPractices:['AI & Data','Digital Solutions','Cloud Computing','SAP','SAP Concur','Business Agility'],
       newTab:'abre em nova aba',
       markers:['Sugerido por IA','Adaptado por IA','Revisado por IA','Autoria humana'],
@@ -149,6 +150,7 @@
       dlTokens:'Token CSS', dlTokensD:'Custom properties for both themes, generated from tokens.json.',
       dlJson:'tokens.json', dlJsonD:'The design system’s source of truth, with real Figma IDs.',
       dlPdf:'Guidelines (PDF)', dlPdfD:'30 pages — the full manual to send to stakeholders.',
+      dlDesign:'DESIGN.md', dlDesignD:'The style reference in markdown — colour, typography, components and interface rules. Made to paste into an AI agent or a repo.',
       secPractices:['AI & Data','Digital Solutions','Cloud Computing','SAP','SAP Concur','Business Agility'],
       newTab:'opens in a new tab',
       markers:['AI-suggested','AI-adapted','AI-reviewed','Human-authored'],
@@ -322,9 +324,11 @@
           caixa(bg, fg, nomes[1].trim() + ' sobre ' + nomes[0].trim()) +
           '</span></td>' +
           '<td class="' + (c[2] ? 'ok' : 'no') + '"><span class="ratio">' +
-          '<span class="icon-slot" data-slot="' + (c[2] ? 'status-success' : 'status-error') + '"></span>' +
+          '<span class="icon-slot" data-slot="' + (c[2] ? 'action-check' : 'navigation-close') + '"></span>' +
           c[1] + ':1</span></td></tr>';
       }).join('') + '</tbody></table>';
+    // check e x sem círculo (action/check e navigation/close): a coluna é
+    // escaneada de relance, e o anel ao redor do glifo atrapalha isso.
     // os ícones vêm do design system, não de um path duplicado aqui
     fillIconSlots($('#contrastTable'));
 
@@ -336,11 +340,12 @@
 
     /* downloads */
     var dls = [
-      ['dlLogos','dlLogosD','assets/downloads/genesis-logos.zip','ZIP · 181 KB'],
-      ['dlIcons','dlIconsD','assets/downloads/genesis-icons.zip','ZIP · 72 KB'],
+      ['dlLogos','dlLogosD','assets/downloads/genesis-logos.zip','ZIP · 182 KB'],
+      ['dlIcons','dlIconsD','assets/downloads/genesis-icons.zip','ZIP · 69 KB'],
       ['dlTokens','dlTokensD','assets/downloads/genesis-tokens.css','CSS'],
       ['dlJson','dlJsonD','assets/data/tokens.json','JSON · 50 KB'],
-      ['dlPdf','dlPdfD','assets/downloads/genesis-miv.pdf','PDF · 1,2 MB']
+      ['dlPdf','dlPdfD','assets/downloads/genesis-miv.pdf','PDF · 1,2 MB'],
+      ['dlDesign','dlDesignD','assets/downloads/genesis-design.md','MD · 36 KB']
     ];
     $('#dlGrid').innerHTML = dls.map(function (d) {
       return '<a href="' + d[2] + '" download><b>' + esc(t(d[0])) + '</b><span>' +

@@ -75,7 +75,7 @@ assets/data/tokens.json       a fonte de verdade do design system
 assets/logo/                  6 SVG + 6 PNG
 assets/icons/                 106 SVG (currentColor)
 assets/fonts/                 Plus Jakarta Sans (OFL) + a licença
-assets/downloads/             ZIPs, tokens CSS e o manual em PDF
+assets/downloads/             ZIPs, tokens CSS, o manual em PDF e o DESIGN.md
 ```
 
 ### De onde vêm os valores
