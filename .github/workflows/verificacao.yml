@@ -1,0 +1,54 @@
+name: Verificação
+
+# Dois jobs de propósito. A integridade é offline e determinística, então
+# bloqueia cada push. Os links dependem de um site de terceiros que responde
+# 503 esporadicamente — bloquear push nisso geraria alarme falso, então roda
+# em agenda própria.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 11 * * 1'     # segunda, 11h UTC (8h em Brasília)
+  workflow_dispatch:
+
+jobs:
+  integridade:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2      # precisa do commit anterior para o teste do ?v=
+
+      - name: Integridade do site
+        run: python3 scripts/verify_site.py
+
+      - name: O ?v= acompanhou a mudança de asset?
+        run: |
+          if ! git rev-parse HEAD^ >/dev/null 2>&1; then
+            echo "Sem commit anterior; nada a comparar."; exit 0
+          fi
+          MUDOU=$(git diff --name-only HEAD^ HEAD)
+          echo "Arquivos no commit:"; echo "$MUDOU" | sed 's/^/  /'
+
+          if ! echo "$MUDOU" | grep -qE '^assets/(css/style\.css|js/app\.js|data/manifest\.json)$'; then
+            echo "Nenhum asset versionado mudou."; exit 0
+          fi
+
+          ANTES=$(git show HEAD^:index.html | grep -o 'app\.js?v=[0-9]*' | head -1)
+          DEPOIS=$(grep -o 'app\.js?v=[0-9]*' index.html | head -1)
+          if [ "$ANTES" = "$DEPOIS" ]; then
+            echo "::error::style.css, app.js ou manifest.json mudaram, mas o ?v= em index.html continua $DEPOIS. O GitHub Pages serve com max-age=600, então quem já visitou fica até 10 minutos com a versão antiga. Suba o ?v=."
+            exit 1
+          fi
+          echo "?v= subiu: $ANTES → $DEPOIS"
+
+  links:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Links externos da seção 01
+        run: python3 scripts/check_links.py

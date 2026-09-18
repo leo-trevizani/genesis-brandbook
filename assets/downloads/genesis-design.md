@@ -52,7 +52,7 @@ Never bind a primitive directly. Every value below resolves per theme.
 - **Weights:** 400, 600, 700
 - **Sizes:** 14px, 16px, 20px, 24px, 32px, 48px, 76px
 - **Line height:** 120%, 130%, 140%, 160%
-- **Letter spacing:** -2px at 48px, -1px at 76px, 0 at 16–32px, +2px at 24px (heading/3), +20px at 14px (label/tag)
+- **Letter spacing:** -2px at 48px, -1px at 76px, 0 at 16–32px, +2px at 24px (heading/3), +10px at 14px (label/tag)
 - **Role:** Everything. Display, headings, body, UI, labels and captions all come from one family — the system has no secondary face. Geometric, slightly rounded, and open enough to hold up as light text on a near-black surface, which is where most of this product lives.
 
 ### Space Mono — code and the tag eyebrow · `--font-mono`
@@ -81,12 +81,12 @@ Never bind a primitive directly. Every value below resolves per theme.
 | body-strong | 16px | 160% | 0 | 700 | `--text-body-strong` |
 | body-link | 16px | 160% | 0 | 400 underline | `--text-body-link` |
 | body-sm | 14px | 160% | 0 | 400 | `--text-body-sm` |
-| label-tag | 14px | 160% | **+20px** | 400 · UPPERCASE · **mono** | `--text-label-tag` |
+| label-tag | 14px | 160% | **+10px** | 400 · UPPERCASE · **mono** | `--text-label-tag` |
 | code-block | 14px | 140% | 0 | 400 | `--text-code-block` |
 | code-inline | 14px | 160% | 0 | 400 | `--text-code-inline` |
 | code-block-strong | 14px | 140% | 0 | 700 | `--text-code-block-strong` |
 
-Two values in this scale look like mistakes and are not: `heading-3` tracks **positive** +2px where every other heading tracks negative or zero, and `label-tag` tracks **+20px** — an extremely wide eyebrow style. Both are confirmed intentional. Do not normalise them.
+Two values in this scale look like mistakes and are not: `heading-3` tracks **positive** +2px where every other heading tracks negative or zero, and `label-tag` tracks **+10px** — a wide-tracked eyebrow. Both are deliberate. Do not normalise them to zero.
 
 `label-tag` is also the one non-code style set in **Space Mono**, in **uppercase** — the eyebrow is deliberately a different letterform from the headline it sits above.
 
@@ -216,7 +216,7 @@ Secondary is a tonal fill on `--surface-raised` with `--text-primary`. Tertiary 
 ### Data Table
 **Role:** Dense record lists — campaigns, assets, approvals.
 
-Header row in `label-tag`… **except** at narrow column widths, where +20px tracking wraps headers letter-by-letter; drop to `body-sm` 600 there. Row hover is an 8% tint, not a fill swap. Columns are proportional (`flex-grow`), never fixed pixel widths.
+Header row in `label-tag`… **except** at narrow column widths, where the +10px tracking wraps headers letter-by-letter; drop to `body-sm` 600 there. Row hover is an 8% tint, not a fill swap. Columns are proportional (`flex-grow`), never fixed pixel widths.
 
 ### Dashboard Chart
 **Role:** Line, bar and donut visualisations.
@@ -269,8 +269,8 @@ Not a UI surface. Safe-area guides mark platform chrome and must be hidden befor
 - Don't use `--border-subtle` for a border that means something. At 1.98:1 on the dark page it is decorative hairline only; meaningful edges use `--border-default`.
 - Don't apply shadows in the dark theme. A black shadow on `#030903` is invisible — you get the cost without the effect.
 - Don't use `#000000` anywhere except the monochrome logo plate, and don't use `#ffffff` as a dark-theme text colour — `#edf3ed` is the on-brand off-white.
-- Don't "correct" the two odd type values: `heading-3` at +2px tracking and `label-tag` at +20px are both intentional.
-- Don't use `label-tag` on narrow table columns — the +20px tracking wraps headers one letter per line.
+- Don't "correct" the two odd type values: `heading-3` at +2px tracking and `label-tag` at +10px are both intentional.
+- Don't use `label-tag` on narrow table columns — the +10px tracking still wraps headers one letter per line. One word of 11 characters measures ~204px.
 - Don't put a fixed-width child inside a flexible container. A flexible root with a rigid child looks correct in the layer tree and breaks on canvas.
 - Don't say "Fale com a gente" — the voice guide rules out "a gente"; the approved form is "Fale com um especialista".
 - Don't set prose, body UI labels or numbers in Space Mono. It carries exactly two meanings in this system — *this is code* and *this is the tag eyebrow* (`label/tag`) — and using it for "technical feel" anywhere else dilutes both.
@@ -404,7 +404,7 @@ Example Component Prompts
   --text-heading-4: 20px;    --leading-heading-4: 1.4;    --tracking-heading-4: 0px;
   --text-body: 16px;         --leading-body: 1.6;         --tracking-body: 0px;
   --text-body-sm: 14px;      --leading-body-sm: 1.6;      --tracking-body-sm: 0px;
-  --text-label-tag: 14px;    --leading-label-tag: 1.6;    --tracking-label-tag: 20px;
+  --text-label-tag: 14px;    --leading-label-tag: 1.6;    --tracking-label-tag: 10px;
   --transform-label-tag: uppercase;
   --text-code-block: 14px;   --leading-code-block: 1.4;   --tracking-code-block: 0px;
   --text-code-inline: 14px;  --leading-code-inline: 1.6;  --tracking-code-inline: 0px;
@@ -580,7 +580,7 @@ Example Component Prompts
   --text-body-sm--line-height: 1.6;
   --text-label-tag: 14px;
   --text-label-tag--line-height: 1.6;
-  --text-label-tag--letter-spacing: 20px;
+  --text-label-tag--letter-spacing: 10px;
   --text-label-tag--text-transform: uppercase;
   --text-code-block: 14px;
   --text-code-block--line-height: 1.4;
