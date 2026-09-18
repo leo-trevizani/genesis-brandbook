@@ -177,10 +177,11 @@ a.card-link:hover .card-go{color:var(--brand)}
 .sw-chip{flex:0 0 76px;display:block}
 .sw-chip.split{display:flex}
 .sw-chip.split span{flex:1}
-/* Chip cuja cor é a própria superfície do card (#242824 = surface-raised no
-   tema escuro) sumiria contra ela. Anel interno em vez de border: mantém os
-   76px exatos e acompanha o recorte do border-radius do card. */
-.sw-chip.needs-outline{box-shadow:inset 0 0 0 1px var(--border-subtle)}
+/* Chip cuja cor é a própria superfície do card: #242824 é surface-raised no
+   tema ESCURO e sumiria contra ela. No tema claro o card é branco e a cor
+   aparece sozinha, então o anel fica restrito ao escuro. Anel interno em vez
+   de border: mantém os 76px exatos e acompanha o border-radius do card. */
+:root[data-theme="dark"] .sw-chip.needs-outline{box-shadow:inset 0 0 0 1px var(--border-subtle)}
 /* display:block é obrigatório: como <span> inline o padding vertical era
    pintado mas não ocupava espaço, o texto colava nas bordas e o excedente
    era cortado pelo overflow:hidden do card. */
@@ -237,6 +238,10 @@ th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;te
 td{padding:9px var(--s-sm) 9px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top}
 td.mono,th.mono{font-family:var(--mono);font-size:13px}
 td .tok{font-family:var(--mono);font-size:12px;color:var(--text-primary)}
+/* A coluna token da tabela de hierarquia mostra cada nome desenhado com a
+   própria definição (família, corpo, entrelinha, tracking e peso vêm inline,
+   do manifest). display chega a 76px: é a tabela que rola, não a página. */
+td .tok-spec{display:inline-block;color:var(--text-primary);white-space:nowrap}
 td .val{font-family:var(--mono);font-size:12px;color:var(--brand)}
 .ok{color:var(--emerald-400);font-weight:700;font-family:var(--mono)}
 .no{color:var(--st-error);font-weight:700;font-family:var(--mono)}

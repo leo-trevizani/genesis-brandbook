@@ -26,7 +26,7 @@
   var I18N = {
     pt: {
       skip:'Ir para o conteúdo', themeDark:'Escuro', themeLight:'Claro',
-      navBrand:'A marca', navLogo:'Logo', navColor:'Cores', navPair:'O par temático',
+      navBrand:'A marca', navLogo:'Logo', navColor:'Cores', navPair:'Botões',
       navType:'Tipografia', navIcons:'Ícones', navSpace:'Espaçamento', navShape:'Formas',
       navA11y:'Acessibilidade', navAI:'Marcadores de IA', navDown:'Downloads',
       heroKicker:'Manual de identidade visual · v.01/2026',
@@ -45,7 +45,7 @@
       colorStatusN:'Cada status é um par: um valor para o tema escuro, outro para o claro. Status nunca é comunicado só por cor — sempre acompanha ícone ou palavra.',
       colorVizN:'Limitação conhecida: sob protanopia três séries não adjacentes se aproximam. Toda legenda nomeia a série COM o valor — o rótulo é o que carrega o sentido, não a cor.',
       devSummary:'Para desenvolvedores',
-      pairT:'O par temático',
+      pairT:'Botões',
       pairI:'A decisão que organiza todo o sistema: o verde de marca não é uma cor, são duas. Nenhum verde único passa em contraste nas duas superfícies.',
       pairDark:'Tema escuro', pairLight:'Tema claro', passAA:'PASSA AA', ctaCanon:'Fale com um especialista',
       pairErrT:'O erro mais comum do sistema',
@@ -87,7 +87,7 @@
     },
     en: {
       skip:'Skip to content', themeDark:'Dark', themeLight:'Light',
-      navBrand:'The brand', navLogo:'Logo', navColor:'Colour', navPair:'The theme pair',
+      navBrand:'The brand', navLogo:'Logo', navColor:'Colour', navPair:'Buttons',
       navType:'Typography', navIcons:'Icons', navSpace:'Spacing', navShape:'Shape',
       navA11y:'Accessibility', navAI:'AI markers', navDown:'Downloads',
       heroKicker:'Visual identity guidelines · v.01/2026',
@@ -106,7 +106,7 @@
       colorStatusN:'Each status is a pair: one value for the dark theme, another for light. Status is never communicated by colour alone — always with an icon or a word.',
       colorVizN:'Known limitation: under protanopia three non-adjacent series converge. Every legend names the series WITH its value — the label carries the meaning, not the colour.',
       devSummary:'For developers',
-      pairT:'The theme pair',
+      pairT:'Buttons',
       pairI:'The decision that organises the whole system: the brand green is not one colour, it is two. No single green clears contrast on both surfaces.',
       pairDark:'Dark theme', pairLight:'Light theme', passAA:'PASSES AA', ctaCanon:'Talk to a specialist',
       pairErrT:'The most common mistake in this system',
@@ -265,7 +265,13 @@
     $('#typeTable').innerHTML = '<table><thead><tr><th>' + t('thToken') + '</th><th>' + t('thSize') +
       '</th><th>' + t('thLh') + '</th><th>' + t('thLs') + '</th><th>' + t('thWeight') +
       '</th></tr></thead><tbody>' + M.type.map(function (r) {
-        return '<tr><td><span class="tok">' + esc(r.token) + (r.mono ? ' ⌨' : '') + '</span></td>' +
+        // cada token desenhado com a própria definição; ls vem como '+2px'
+        var spec = 'font-family:' + (r.mono ? 'var(--mono)' : 'var(--font)') +
+          ';font-size:' + r.size + 'px;line-height:' + r.lh +
+          ';letter-spacing:' + String(r.ls).replace('+', '') +
+          ';font-weight:' + r.w;
+        return '<tr><td><span class="tok-spec" style="' + spec + '">' + esc(r.token) +
+          '</span>' + (r.mono ? ' <span class="tok">⌨</span>' : '') + '</td>' +
           '<td><span class="val">' + r.size + 'px</span></td><td class="mono">' + r.lh +
           '</td><td class="mono">' + r.ls + '</td><td class="mono">' + r.w + '</td></tr>';
       }).join('') + '</tbody></table>';
@@ -412,18 +418,70 @@
     if (e.target.id === 'iconSearch') renderIcons(e.target.value);
   });
 
-  /* scroll spy */
+  /* ============================== scroll spy ===========================
+     Era IntersectionObserver e tinha três furos:
+
+     1. O IO só avisa quando a interseção MUDA. No fim da página não há mais
+        scroll possível, então clicar em "Downloads" não mudava interseção
+        nenhuma e o item nunca acendia — as últimas seções eram inalcançáveis.
+     2. `if (!en.isIntersecting) return` descartava as saídas, e quando duas
+        seções estavam na faixa ao mesmo tempo quem vencia era a última do
+        array de entries, cuja ordem o IO não garante ser a do documento.
+     3. Não havia estado inicial garantido: em alguns pontos nenhum item
+        ficava aceso.
+
+     Agora o ativo é recalculado do zero a cada evento, a partir da geometria.
+     Sempre existe exatamente um, e a ordem é a do documento. */
   function spy() {
     var links = $$('.side a'); if (!links.length) return;
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var id = en.target.id;
-        links.forEach(function (a) {
-          a.classList.toggle('is-active', a.getAttribute('href') === '#' + id); });
+    var itens = links.map(function (a) {
+      return { a: a, sec: document.querySelector(a.getAttribute('href')) };
+    }).filter(function (x) { return x.sec; });
+    if (!itens.length) return;
+
+    var LINHA = 140;     // linha de leitura, logo abaixo da topbar fixa
+    var aceso = null;    // evita tocar no DOM quando nada mudou
+    var alvo = null;     // seção clicada
+    var alvoAte = 0;     // até quando o clique manda, enquanto o scroll assenta
+
+    function pintar(x) {
+      if (x === aceso) return;
+      aceso = x;
+      itens.forEach(function (i) { i.a.classList.toggle('is-active', i === x); });
+    }
+
+    function calcular() {
+      var doc = document.scrollingElement || document.documentElement;
+      var noFim = doc.scrollTop >= doc.scrollHeight - innerHeight - 2;
+
+      // Enquanto o scroll do clique não assenta, manda o clique: senão cada
+      // seção atravessada durante o scroll suave pisca como ativa.
+      if (alvo && Date.now() < alvoAte) return pintar(alvo);
+
+      // No fim da página as últimas seções nunca alcançam a linha de leitura,
+      // porque não há mais para onde rolar. Vale o clique, ou a última seção.
+      if (noFim) {
+        if (alvo && alvo.sec.getBoundingClientRect().bottom > 0) return pintar(alvo);
+        return pintar(itens[itens.length - 1]);
+      }
+
+      alvo = null;
+      var atual = itens[0];
+      for (var i = 0; i < itens.length; i++) {
+        if (itens[i].sec.getBoundingClientRect().top <= LINHA) atual = itens[i];
+      }
+      pintar(atual);
+    }
+
+    itens.forEach(function (x) {
+      x.a.addEventListener('click', function () {
+        alvo = x; alvoAte = Date.now() + 800; pintar(x);
       });
-    }, { rootMargin: '-96px 0px -70% 0px', threshold: 0 });
-    $$('main section[id]').forEach(function (s) { obs.observe(s); });
+    });
+    addEventListener('scroll', calcular, { passive: true });
+    addEventListener('resize', calcular);
+    addEventListener('hashchange', calcular);
+    calcular();
   }
 
   /* ============================== boot ================================= */
