@@ -1,0 +1,106 @@
+/* Genesis Consulting — Design Tokens
+   Gerado de tokens.json · não editar à mão */
+
+:root {
+  /* primitivos */
+  --gc-color-amber-500: #d69323;
+  --gc-color-amber-800: #8a5314;
+  --gc-color-black-pure: #000000;
+  --gc-color-blue-400: #5ba0fb;
+  --gc-color-blue-700: #0f5abd;
+  --gc-color-emerald-400: #4bc37d;
+  --gc-color-emerald-800: #256f44;
+  --gc-color-green-500: #46a239;
+  --gc-color-green-900: #1b4a14;
+  --gc-color-green-neon-400: #8fc05d;
+  --gc-color-green-neon-700: #578b23;
+  --gc-color-neutral-0: #edf3ed;
+  --gc-color-neutral-400: #8f9c8f;
+  --gc-color-neutral-500: #798679;
+  --gc-color-neutral-700: #3d433d;
+  --gc-color-neutral-800: #242824;
+  --gc-color-neutral-950: #030903;
+  --gc-color-red-400: #f4776a;
+  --gc-color-red-700: #b3261e;
+  --gc-color-white-pure: #ffffff;
+
+  /* semânticos — tema escuro (padrão) */
+  --gc-surface-page: #030903;
+  --gc-surface-default: #030903;
+  --gc-surface-raised: #242824;
+  --gc-surface-inverse: #edf3ed;
+  --gc-text-primary: #edf3ed;
+  --gc-text-secondary: #8f9c8f;
+  --gc-text-secondary-on-raised: #8f9c8f;
+  --gc-text-disabled: #798679;
+  --gc-text-on-brand: #030903;
+  --gc-text-on-accent: #030903;
+  --gc-text-on-status: #030903;
+  --gc-brand-primary: #46a239;
+  --gc-brand-primary-on-raised: #46a239;
+  --gc-brand-accent: #8fc05d;
+  --gc-border-subtle: #3d433d;
+  --gc-border-default: #798679;
+  --gc-border-focus: #46a239;
+  --gc-status-error: #f4776a;
+  --gc-status-warning: #d69323;
+  --gc-status-success: #4bc37d;
+  --gc-status-info: #5ba0fb;
+  --gc-brand-logo-mono: #000000;
+  --gc-overlay-scrim-fill: #030903;
+  --gc-data-viz-series-1: #46a239;
+  --gc-data-viz-series-2: #8fc05d;
+  --gc-data-viz-series-3: #d69323;
+  --gc-data-viz-series-4: #5ba0fb;
+  --gc-data-viz-series-5: #f4776a;
+
+  /* spacing */
+  --gc-spacing-2xs: 4px;
+  --gc-spacing-xs: 8px;
+  --gc-spacing-sm: 16px;
+  --gc-spacing-sm-md: 24px;
+  --gc-spacing-md: 32px;
+  --gc-spacing-lg: 64px;
+  --gc-spacing-xl: 80px;
+  --gc-spacing-2xl: 120px;
+  --gc-spacing-3xl: 200px;
+
+  /* radius */
+  --gc-radius-none: 0px;
+  --gc-radius-sm: 4px;
+  --gc-radius-md: 8px;
+  --gc-radius-lg: 16px;
+  --gc-radius-full: 9999px;
+}
+
+/* tema claro */
+[data-theme="light"] {
+  --gc-surface-page: #edf3ed;
+  --gc-surface-default: #edf3ed;
+  --gc-surface-raised: #ffffff;
+  --gc-surface-inverse: #030903;
+  --gc-text-primary: #030903;
+  --gc-text-secondary: #3d433d;
+  --gc-text-secondary-on-raised: #3d433d;
+  --gc-text-disabled: #798679;
+  --gc-text-on-brand: #edf3ed;
+  --gc-text-on-accent: #030903;
+  --gc-text-on-status: #edf3ed;
+  --gc-brand-primary: #1b4a14;
+  --gc-brand-primary-on-raised: #1b4a14;
+  --gc-brand-accent: #8fc05d;
+  --gc-border-subtle: #798679;
+  --gc-border-default: #3d433d;
+  --gc-border-focus: #1b4a14;
+  --gc-status-error: #b3261e;
+  --gc-status-warning: #8a5314;
+  --gc-status-success: #256f44;
+  --gc-status-info: #0f5abd;
+  --gc-brand-logo-mono: #000000;
+  --gc-overlay-scrim-fill: #030903;
+  --gc-data-viz-series-1: #1b4a14;
+  --gc-data-viz-series-2: #578b23;
+  --gc-data-viz-series-3: #8a5314;
+  --gc-data-viz-series-4: #0f5abd;
+  --gc-data-viz-series-5: #b3261e;
+}

@@ -1,0 +1,577 @@
+{
+ "generated": "from tokens.json",
+ "brand": [
+  {
+   "name": "Genesis Green",
+   "hex": "#46a239",
+   "token": "palette/green-500",
+   "pantone": "362 C",
+   "rgb": "70, 162, 57",
+   "cmyk": "75, 5, 100, 0",
+   "role": {
+    "pt": "Verde de marca no tema escuro",
+    "en": "Brand green on dark surfaces"
+   }
+  },
+  {
+   "name": "Genesis Deep Green",
+   "hex": "#1b4a14",
+   "token": "palette/green-900",
+   "pantone": "350 C",
+   "rgb": "27, 74, 20",
+   "cmyk": "75, 5, 100, 66",
+   "role": {
+    "pt": "Verde de marca no tema claro e em e-mail",
+    "en": "Brand green on light and email surfaces"
+   }
+  },
+  {
+   "name": "Accent Neon",
+   "hex": "#8fc05d",
+   "token": "palette/green-neon-400",
+   "pantone": null,
+   "rgb": "143, 192, 93",
+   "cmyk": null,
+   "role": {
+    "pt": "Preenchimento e grafismo. Nunca texto — 1,89:1 no claro",
+    "en": "Fill and large graphics only. Never text — 1.89:1 on light"
+   }
+  }
+ ],
+ "neutrals": [
+  {
+   "name": "Mist",
+   "hex": "#edf3ed",
+   "token": "palette/neutral-0",
+   "role": {
+    "pt": "Texto principal no escuro",
+    "en": "Primary text on dark"
+   }
+  },
+  {
+   "name": "Sage",
+   "hex": "#8f9c8f",
+   "token": "palette/neutral-400",
+   "role": {
+    "pt": "Texto secundário",
+    "en": "Secondary text"
+   }
+  },
+  {
+   "name": "Moss",
+   "hex": "#798679",
+   "token": "palette/neutral-500",
+   "role": {
+    "pt": "Desabilitado, hairline",
+    "en": "Disabled, hairline"
+   }
+  },
+  {
+   "name": "Slate Moss",
+   "hex": "#3d433d",
+   "token": "palette/neutral-700",
+   "role": {
+    "pt": "Texto secundário no claro",
+    "en": "Secondary text on light"
+   }
+  },
+  {
+   "name": "Raised",
+   "hex": "#242824",
+   "token": "palette/neutral-800",
+   "role": {
+    "pt": "Superfície de card",
+    "en": "Card surface"
+   }
+  },
+  {
+   "name": "Forest Black",
+   "hex": "#030903",
+   "token": "palette/neutral-950",
+   "role": {
+    "pt": "Superfície dominante",
+    "en": "Dominant surface"
+   }
+  }
+ ],
+ "status": [
+  {
+   "name": {
+    "pt": "Sucesso",
+    "en": "Success"
+   },
+   "dark": "#4bc37d",
+   "light": "#256f44",
+   "token": "status/success"
+  },
+  {
+   "name": {
+    "pt": "Erro",
+    "en": "Error"
+   },
+   "dark": "#f4776a",
+   "light": "#b3261e",
+   "token": "status/error"
+  },
+  {
+   "name": {
+    "pt": "Atenção",
+    "en": "Warning"
+   },
+   "dark": "#d69323",
+   "light": "#8a5314",
+   "token": "status/warning"
+  },
+  {
+   "name": {
+    "pt": "Informação",
+    "en": "Info"
+   },
+   "dark": "#5ba0fb",
+   "light": "#0f5abd",
+   "token": "status/info"
+  }
+ ],
+ "dataviz": [
+  "#46a239",
+  "#8fc05d",
+  "#d69323",
+  "#5ba0fb",
+  "#f4776a"
+ ],
+ "semantic": {
+  "surface-page": {
+   "dark": "#030903",
+   "light": "#edf3ed"
+  },
+  "surface-default": {
+   "dark": "#030903",
+   "light": "#edf3ed"
+  },
+  "surface-raised": {
+   "dark": "#242824",
+   "light": "#ffffff"
+  },
+  "surface-inverse": {
+   "dark": "#edf3ed",
+   "light": "#030903"
+  },
+  "text-primary": {
+   "dark": "#edf3ed",
+   "light": "#030903"
+  },
+  "text-secondary": {
+   "dark": "#8f9c8f",
+   "light": "#3d433d"
+  },
+  "text-secondary-on-raised": {
+   "dark": "#8f9c8f",
+   "light": "#3d433d"
+  },
+  "text-disabled": {
+   "dark": "#798679",
+   "light": "#798679"
+  },
+  "text-on-brand": {
+   "dark": "#030903",
+   "light": "#edf3ed"
+  },
+  "text-on-accent": {
+   "dark": "#030903",
+   "light": "#030903"
+  },
+  "text-on-status": {
+   "dark": "#030903",
+   "light": "#edf3ed"
+  },
+  "brand-primary": {
+   "dark": "#46a239",
+   "light": "#1b4a14"
+  },
+  "brand-primary-on-raised": {
+   "dark": "#46a239",
+   "light": "#1b4a14"
+  },
+  "brand-accent": {
+   "dark": "#8fc05d",
+   "light": "#8fc05d"
+  },
+  "border-subtle": {
+   "dark": "#3d433d",
+   "light": "#798679"
+  },
+  "border-default": {
+   "dark": "#798679",
+   "light": "#3d433d"
+  },
+  "border-focus": {
+   "dark": "#46a239",
+   "light": "#1b4a14"
+  },
+  "status-error": {
+   "dark": "#f4776a",
+   "light": "#b3261e"
+  },
+  "status-warning": {
+   "dark": "#d69323",
+   "light": "#8a5314"
+  },
+  "status-success": {
+   "dark": "#4bc37d",
+   "light": "#256f44"
+  },
+  "status-info": {
+   "dark": "#5ba0fb",
+   "light": "#0f5abd"
+  },
+  "brand-logo-mono": {
+   "dark": "#000000",
+   "light": "#000000"
+  },
+  "overlay-scrim-fill": {
+   "dark": "#030903",
+   "light": "#030903"
+  },
+  "data-viz-series-1": {
+   "dark": "#46a239",
+   "light": "#1b4a14"
+  },
+  "data-viz-series-2": {
+   "dark": "#8fc05d",
+   "light": "#578b23"
+  },
+  "data-viz-series-3": {
+   "dark": "#d69323",
+   "light": "#8a5314"
+  },
+  "data-viz-series-4": {
+   "dark": "#5ba0fb",
+   "light": "#0f5abd"
+  },
+  "data-viz-series-5": {
+   "dark": "#f4776a",
+   "light": "#b3261e"
+  }
+ },
+ "type": [
+  {
+   "token": "display",
+   "size": 76,
+   "lh": "130%",
+   "ls": "-1px",
+   "w": 700
+  },
+  {
+   "token": "heading/1",
+   "size": 48,
+   "lh": "120%",
+   "ls": "-2px",
+   "w": 700
+  },
+  {
+   "token": "heading/2",
+   "size": 32,
+   "lh": "120%",
+   "ls": "0",
+   "w": 700
+  },
+  {
+   "token": "heading/3",
+   "size": 24,
+   "lh": "120%",
+   "ls": "+2px",
+   "w": 600
+  },
+  {
+   "token": "heading/4",
+   "size": 20,
+   "lh": "140%",
+   "ls": "0",
+   "w": 700
+  },
+  {
+   "token": "body/md",
+   "size": 16,
+   "lh": "160%",
+   "ls": "0",
+   "w": 400
+  },
+  {
+   "token": "body/sm",
+   "size": 14,
+   "lh": "160%",
+   "ls": "0",
+   "w": 400
+  },
+  {
+   "token": "label/tag",
+   "size": 16,
+   "lh": "160%",
+   "ls": "+20px",
+   "w": 400
+  },
+  {
+   "token": "code/block",
+   "size": 14,
+   "lh": "140%",
+   "ls": "0",
+   "w": 400,
+   "mono": true
+  },
+  {
+   "token": "code/inline",
+   "size": 14,
+   "lh": "160%",
+   "ls": "0",
+   "w": 400,
+   "mono": true
+  }
+ ],
+ "spacing": [
+  [
+   "2xs",
+   4
+  ],
+  [
+   "xs",
+   8
+  ],
+  [
+   "sm",
+   16
+  ],
+  [
+   "sm-md",
+   24
+  ],
+  [
+   "md",
+   32
+  ],
+  [
+   "lg",
+   64
+  ],
+  [
+   "xl",
+   80
+  ],
+  [
+   "2xl",
+   120
+  ],
+  [
+   "3xl",
+   200
+  ]
+ ],
+ "radius": [
+  [
+   "none",
+   0
+  ],
+  [
+   "sm",
+   4
+  ],
+  [
+   "button",
+   8
+  ],
+  [
+   "card",
+   16
+  ],
+  [
+   "full",
+   9999
+  ]
+ ],
+ "icons": [
+  "action-add",
+  "action-check",
+  "action-copy",
+  "action-delete",
+  "action-download",
+  "action-edit",
+  "action-filter",
+  "action-play",
+  "action-refresh",
+  "action-remove",
+  "action-settings",
+  "action-share",
+  "action-upload",
+  "action-view",
+  "content-ai-brain",
+  "content-attachment",
+  "content-chart",
+  "content-checklist",
+  "content-cloud",
+  "content-code",
+  "content-columns",
+  "content-diff",
+  "content-document",
+  "content-email",
+  "content-image",
+  "content-link",
+  "content-network",
+  "content-palette",
+  "navigation-arrow-left",
+  "navigation-arrow-right",
+  "navigation-arrow-up-right",
+  "navigation-caret-down",
+  "navigation-caret-left",
+  "navigation-caret-right",
+  "navigation-caret-up",
+  "navigation-close",
+  "navigation-dots-three",
+  "navigation-home",
+  "navigation-menu",
+  "navigation-search",
+  "status-ai",
+  "status-blocked",
+  "status-clock",
+  "status-contrast",
+  "status-error",
+  "status-gauge",
+  "status-info",
+  "status-loading",
+  "status-seal-check",
+  "status-shield-check",
+  "status-success",
+  "status-warning"
+ ],
+ "iconGroups": {
+  "action": [
+   "action-add",
+   "action-check",
+   "action-copy",
+   "action-delete",
+   "action-download",
+   "action-edit",
+   "action-filter",
+   "action-play",
+   "action-refresh",
+   "action-remove",
+   "action-settings",
+   "action-share",
+   "action-upload",
+   "action-view"
+  ],
+  "content": [
+   "content-ai-brain",
+   "content-attachment",
+   "content-chart",
+   "content-checklist",
+   "content-cloud",
+   "content-code",
+   "content-columns",
+   "content-diff",
+   "content-document",
+   "content-email",
+   "content-image",
+   "content-link",
+   "content-network",
+   "content-palette"
+  ],
+  "navigation": [
+   "navigation-arrow-left",
+   "navigation-arrow-right",
+   "navigation-arrow-up-right",
+   "navigation-caret-down",
+   "navigation-caret-left",
+   "navigation-caret-right",
+   "navigation-caret-up",
+   "navigation-close",
+   "navigation-dots-three",
+   "navigation-home",
+   "navigation-menu",
+   "navigation-search"
+  ],
+  "status": [
+   "status-ai",
+   "status-blocked",
+   "status-clock",
+   "status-contrast",
+   "status-error",
+   "status-gauge",
+   "status-info",
+   "status-loading",
+   "status-seal-check",
+   "status-shield-check",
+   "status-success",
+   "status-warning"
+  ]
+ },
+ "logos": [
+  {
+   "file": "principal",
+   "label": {
+    "pt": "Principal",
+    "en": "Primary"
+   },
+   "module": "combined / horizontal",
+   "min": "32px"
+  },
+  {
+   "file": "slogan",
+   "label": {
+    "pt": "Slogan",
+    "en": "Slogan"
+   },
+   "module": "combined / vertical",
+   "min": "64px"
+  },
+  {
+   "file": "monograma",
+   "label": {
+    "pt": "Monograma",
+    "en": "Monogram"
+   },
+   "module": "symbol / square",
+   "min": "16px"
+  }
+ ],
+ "contrast": [
+  [
+   "Mist / Forest Black",
+   "17.85",
+   true
+  ],
+  [
+   "Accent Neon / Forest Black",
+   "9.45",
+   true
+  ],
+  [
+   "Genesis Deep / branco",
+   "9.16",
+   true
+  ],
+  [
+   "Sage / Forest Black",
+   "7.01",
+   true
+  ],
+  [
+   "Genesis Green / Forest Black",
+   "6.21",
+   true
+  ],
+  [
+   "Sage / Raised",
+   "5.21",
+   true
+  ],
+  [
+   "Genesis Green / branco",
+   "2.87",
+   false
+  ],
+  [
+   "Accent Neon / branco",
+   "1.89",
+   false
+  ]
+ ]
+}
