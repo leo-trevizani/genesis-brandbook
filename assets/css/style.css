@@ -194,10 +194,19 @@ a.card-link:hover .card-go{color:var(--brand)}
 .sw-chip.split{display:flex}
 .sw-chip.split span{flex:1}
 /* Chip cuja cor é a própria superfície do card: #242824 é surface-raised no
-   tema ESCURO e sumiria contra ela. No tema claro o card é branco e a cor
-   aparece sozinha, então o anel fica restrito ao escuro. Anel interno em vez
-   de border: mantém os 76px exatos e acompanha o border-radius do card. */
-:root[data-theme="dark"] .sw-chip.needs-outline{box-shadow:inset 0 0 0 1px var(--border-subtle)}
+   tema ESCURO. Borda restrita à base (bottom) para delimitar o chip sem
+   outline no elemento todo. */
+.sw-chip.needs-outline,
+#swNeutral button:nth-of-type(5) > span:first-child{
+  outline:none;
+  border-bottom:1px solid var(--border-subtle);
+}
+:root[data-theme="dark"] .sw-chip.needs-outline,
+:root[data-theme="dark"] #swNeutral button:nth-of-type(5) > span:first-child{
+  box-shadow:none;
+  outline:none;
+  border-bottom:1px solid var(--border-subtle);
+}
 /* display:block é obrigatório: como <span> inline o padding vertical era
    pintado mas não ocupava espaço, o texto colava nas bordas e o excedente
    era cortado pelo overflow:hidden do card. */
