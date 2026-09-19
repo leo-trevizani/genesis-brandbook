@@ -1,0 +1,14 @@
+{
+  "name": "genesis-brandbook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Manual de identidade visual da Genesis Consulting: cores, tipografia, logos e ícones prontos para copiar e baixar.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Static site ready'"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
